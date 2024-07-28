@@ -26,13 +26,24 @@
 
 
 <?php
-if (isset($_POST["submit"])) {
-    if(isset($_POST["payment"])){
-        echo $_POST["payment"];
-    }
-    else{
-        echo "Please select a payment method";
-        }
+$payment = $_POST["payment"];
+if (isset($_POST["payment"])) {
+    $payment =$_POST['payment'];
 }
+
+    switch ($payment) {
+        case "visa":
+            echo "Visa is selected";
+            break;
+        case "mastercard":
+            echo "Mastercard is selected";
+            break;
+        case "american express":
+            echo "American express is selected";
+            break;
+        default:
+            echo "you selected nothing";
+            break;
+    }
 
 ?>
