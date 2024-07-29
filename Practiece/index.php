@@ -1,11 +1,7 @@
 <?php
-    function iseven($number){
-        if($number % 2 == 0){
-            echo "even";
+    function hypotenuse($a , $b){
+        $c =sqrt($a ** 2 + $b ** 2);
+        return $c;
     }
-    else{
-        echo "odd";
-    }
-}
-iseven(13);
+    echo hypotenuse(12 , 4);
 ?>
