@@ -1,16 +1,16 @@
 <?php
     $db_server = "localhost";
     $db_user = "root";
-    $port=3307;
     $db_password = ""; // Replace with your actual password
-    $db_name = "school_management_system";
-
+    $db_name = "test";
+    
     // Attempt to connect to the database
-    $connection = new mysqli($db_server, $db_user,$db_password, $db_name,$port);
+    $connection = mysqli_connect($db_server, $db_user, $db_password, $db_name);
 
     // Check connection
-    if ($connection->connect_error) {
-        die("Connection failed: " . $connection->connect_error);
+    if (!$connection) {  // Use procedural style for error checking
+        die("Connection failed: " . mysqli_connect_error());
     }
     echo "Connected to database";
 ?>
+
