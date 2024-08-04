@@ -35,11 +35,15 @@
 
             // Corrected table name syntax
             $sql = "INSERT INTO user (user, password) VALUES ('$username', '$hash')";
-            
-            if (mysqli_query($connection, $sql)) {
-                echo "Your data has been entered successfully";
-            } else {
-                echo "Error: " . mysqli_error($connection);
+            try{
+                if (mysqli_query($connection, $sql)) {
+                    echo "Your data has been entered successfully";
+                } else {
+                    echo "Error: " . mysqli_error($connection);
+                }
+            }
+            catch(mysqli_sql_exception){
+                echo "username is not available";
             }
         }
     }
