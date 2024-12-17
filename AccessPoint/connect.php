@@ -10,5 +10,5 @@ if (!$connect) {
     error_log("Connection error: " . mysqli_connect_error());
     die("Database connection failed. Please try again later.");
 } else {
-    echo "Your connection is successful";
+    // echo "Your connection is successful";
 }

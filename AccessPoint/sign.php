@@ -1,17 +1,36 @@
 <?php
+$success = 0;
+$user = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'connect.php';
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $sql = "insert into `registration`(username,password) values('$username','$password')";
+    // $sql = "insert into `registration`(username,password) values('$username','$password')";
+    // $result = mysqli_query($connect, $sql);
+    // if ($result) {
+    //     echo "Data inserted successfully";
+    // } else {
+    //     die(mysqli_error($connect));
+    // }
+
+    $sql = "Select * from `registration` where username='$username'";
     $result = mysqli_query($connect, $sql);
     if ($result) {
-        echo "Data inserted successfully";
-    } else {
-        die(mysqli_error($connect));
+        $num = mysqli_num_rows($result);
+        if ($num > 0) {
+            // echo "User already exist";
+            $user = 1;
+        } else {
+            $sql = "insert into `registration`(username,password) values('$username','$password')";
+            $result = mysqli_query($connect, $sql);
+            if ($result) {
+                // echo "Sign Up successful";
+                $success = 1;
+            } else {
+                die(mysqli_error($connect));
+            }
+        }
     }
-} else {
-    echo ("Connection error: " . mysqli_connect_error());
 }
 ?>
 <!DOCTYPE html>
@@ -25,6 +44,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+    <?php
+    if ($user) {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Error </strong> User already exist
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    }
+    ?>
+    <?php
+    if ($success) {
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>success </strong> SignUp successful
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    }
+    ?>
     <h1 class="text-center">Here is your SignUP page</h1>
     <div class="container mt-5">
         <form action="sign.php" method="POST">
