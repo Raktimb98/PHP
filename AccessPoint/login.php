@@ -1,7 +1,6 @@
 <?php
-$success = 0;
-$user = 0;
-
+$login = 0;
+$invalid = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'connect.php';
 
@@ -14,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result) {
         $num = mysqli_num_rows($result);
         if ($num > 0) {
-            echo "Login Successful";
+            $login=1;
         } else {
-            echo "Invalid username or password";
+            $invalid = 1;
         }
     } else {
         echo "Something went wrong. Please try again.";
@@ -34,6 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+<?php
+    if ($invalid) {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Error </strong> Invalid username or password
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    }
+    ?>
+    <?php
+    if ($login) {
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>success </strong> Login successful
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    }
+    ?>
     <h1 class="text-center">Login Please</h1>
     <div class="container mt-5">
         <form action="login.php" method="POST">
