@@ -2,50 +2,35 @@
 $success = 0;
 $user = 0;
 $invalid = 0;
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'connect.php';
-
-    // Sanitize and retrieve inputs
-    $username = mysqli_real_escape_string($connect, trim($_POST['username']));
-    $password = trim($_POST['password']);
-    $cpassword = trim($_POST['cpassword']);
-
-    // Check if user already exists
-    $sql = "SELECT * FROM `registration` WHERE username = ?";
-    $stmt = $connect->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $user = 1;
-    } else {
-        if ($password === $cpassword) {
-            // Hash the password
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Insert new user
-            $sql = "INSERT INTO `registration` (username, password) VALUES (?, ?)";
-            $stmt = $connect->prepare($sql);
-            $stmt->bind_param("ss", $username, $hashed_password);
-
-            if ($stmt->execute()) {
-                $success = 1;
-                // Redirect to login page
-                // header('Location: login.php');
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+    $sql = "Select * from registration where username='$username'";
+    $result = mysqli_query($connect, $sql);
+    if ($result) {
+        $num = mysqli_num_rows($result);
+        if ($num > 0) {
+            // echo "User already exist";
+            $user = 1;
+        } else {
+            if ($password === $cpassword) {
+                $sql = "insert into registration(username,password) values('$username','$password')";
+                $result = mysqli_query($connect, $sql);
+                if ($result) {
+                    // echo "Sign Up successful";
+                    $success = 1;
+                    // header('location:login.php');
+                }
             } else {
+                // die(mysqli_error($connect));
                 $invalid = 1;
             }
-        } else {
-            $invalid = 1; // Passwords don't match
         }
     }
-    $stmt->close();
-    $connect->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
