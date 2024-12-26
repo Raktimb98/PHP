@@ -54,6 +54,28 @@
     <!-- JavaScript cdn -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function adduser() {
+            var nameAdd = $('#completename').val();
+            var emailAdd = $('#completeemail').val();
+            var phoneAdd = $('#completephone').val();
+            var placeAdd = $('#completeplace').val();
+
+            $.ajax({
+                url: 'insert.php',
+                type: 'POST',
+                data: {
+                    name: nameAdd,
+                    email: emailAdd,
+                    phone: phoneAdd,
+                    place: placeAdd
+                },
+                success: function(data, status) {
+                    console.log(data);
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
