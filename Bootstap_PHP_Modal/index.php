@@ -49,12 +49,32 @@
     <div class="container">
         <h1 class="text-center my-3">PHP CRUD operations using BootStrap Modal</h1>
         <button class="btn btn-dark my-4 w-100" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#completeModal">Add User</button>
+        <div id="displayDataTable">
+
+        </div>
     </div>
 
     <!-- JavaScript cdn -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        $(document).ready(function(){
+            displayData();
+        });
+        //display function
+        function displayData(){
+            var displayData="True";
+            $.ajax({
+                url: 'display.php',
+                type: 'POST',
+                data: {
+                    displaySend: displayData
+                },
+                success: function(data, status) {
+                $('#displayDataTable').html(data);
+                }
+            });
+        }
         function adduser() {
             var nameAdd = $('#completename').val();
             var emailAdd = $('#completeemail').val();
@@ -71,7 +91,8 @@
                     place: placeAdd
                 },
                 success: function(data, status) {
-                    console.log(data);
+                    // console.log(data);
+                    displayData();
                 }
             });
         }
