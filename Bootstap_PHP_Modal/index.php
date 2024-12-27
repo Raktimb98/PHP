@@ -96,6 +96,22 @@
                 }
             });
         }
+        //Delete User
+        function Deleteuser(id){
+            var conf = confirm("Are you sure you want to delete this user?");
+            if(conf == true){
+                $.ajax({
+                    url: 'delete.php',
+                    type: 'POST',
+                    data: {
+                        id: id
+                    },
+                    success: function(data, status) {
+                        displayData();
+                    }
+                });
+            }
+        }
     </script>
 </body>
 

@@ -20,13 +20,18 @@ if (isset($_POST['displaySend'])) {
         $phone = $row['phone'];
         $place = $row['place'];
         $table .= '<tr>
-    <td scope="row">'.$id.'</td>
-    <td>'.$name.'</td>
-    <td>'.$email.'</td>
-    <td>'.$phone.'</td>
-    <td>'.$place.'</td>
+    <td scope="row">' . $id . '</td>
+    <td>' . $name . '</td>
+    <td>' . $email . '</td>
+    <td>' . $phone . '</td>
+    <td>' . $place . '</td>
+    <td>
+    <button class="btn btn-dark">Update</button>
+    <button class="btn btn-danger" onclick="Deleteuser('.$id.')">Delete</button>
+</td>
     </tr>';
     }
-    $table .='</table>';
+    $table .= '</table>';
     echo $table;
 }
+?>
