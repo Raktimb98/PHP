@@ -19,6 +19,7 @@
 
     <!-- <h1 class="text-center">Stories Page</h1> -->
     <div class="container-fluid slider">
+        <?php include './partials/header.php';?>
         <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
