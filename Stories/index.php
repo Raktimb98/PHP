@@ -14,6 +14,8 @@
 </head>
 
 <body>
+<?php include './partials/connect.php'; ?>
+
     <div class="container-fluid slider p-0">
         <?php include './partials/header.php'; ?>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -39,6 +41,29 @@
     <div class="container">
         <h1 class="text-center featureTitle">Featured Stories</h1>
         <div class="row">
+            <?php
+            $sql = "SELECT * FROM `topics`";
+            $result = mysqli_query($connect, $sql);
+            if($result){
+                while($row = mysqli_fetch_assoc($result)){
+                    // echo $row['topic_id'];
+                    $id=$row['topic_id'];
+                    $topic_image=$row['topic_image'];
+                    $topic_name=$row['topic_name'];
+                    $topic_desc=$row['topic_desc'];
+                    echo '<div class="col-md-4 col-sm-6 mb-5">
+                <div class="card" style="width: 18rem;">
+                    <img src="' . $topic_image . '.jpeg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">'.$topic_name.'</h5>
+                        <p class="card-text">'.substr($topic_desc,0,50).'...</p>
+                        <a href="#" class="btn btn-primary">Continue reading</a>
+                    </div>
+                </div>
+            </div>';
+                }
+            }
+            ?>
             <div class="col-md-4 col-sm-6 mb-5">
                 <div class="card" style="width: 18rem;">
                     <img src="./images/one-boy.jpeg" class="card-img-top" alt="...">
