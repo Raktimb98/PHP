@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<?php include './partials/connect.php'; ?>
+    <?php include './partials/connect.php'; ?>
 
     <div class="container-fluid slider p-0">
         <?php include './partials/header.php'; ?>
@@ -44,19 +44,19 @@
             <?php
             $sql = "SELECT * FROM `topics`";
             $result = mysqli_query($connect, $sql);
-            if($result){
-                while($row = mysqli_fetch_assoc($result)){
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     // echo $row['topic_id'];
-                    $id=$row['topic_id'];
-                    $topic_image=$row['topic_image'];
-                    $topic_name=$row['topic_name'];
-                    $topic_desc=$row['topic_desc'];
+                    $id = $row['topic_id'];
+                    $topic_image = $row['topic_image'];
+                    $topic_name = $row['topic_name'];
+                    $topic_desc = $row['topic_desc'];
                     echo '<div class="col-md-4 col-sm-6 mb-5">
                 <div class="card" style="width: 18rem;">
                     <img src="' . $topic_image . '.jpeg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">'.$topic_name.'</h5>
-                        <p class="card-text">'.substr($topic_desc,0,50).'...</p>
+                        <h5 class="card-title">' . $topic_name . '</h5>
+                        <p class="card-text">' . substr($topic_desc, 0, 50) . '...</p>
                         <a href="#" class="btn btn-primary">Continue reading</a>
                     </div>
                 </div>
@@ -64,43 +64,12 @@
                 }
             }
             ?>
-            <div class="col-md-4 col-sm-6 mb-5">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/one-boy.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Continue reading</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-5">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/one-boy.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Continue reading</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-5">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/one-boy.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Continue reading</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php include './partials/footer.php'; ?>
 
-    <!-- Bootstrap js cdn -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+            <?php include './partials/footer.php'; ?>
+
+            <!-- Bootstrap js cdn -->
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
 </body>
 

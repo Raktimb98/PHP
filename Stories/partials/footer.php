@@ -12,7 +12,7 @@
     </div>
     <div class="col-md-4 col-sm-12">
     <h4>Mobile: <span> 5644568495</span></h4>
-    <p>Address 55 park street,Jaipur,Delhi</p>
+    <p>Address: 55 park street,Jaipur,Delhi</p>
     </div>
     <div class="col-md-12 text-center">
         <hr class="bg-light">
