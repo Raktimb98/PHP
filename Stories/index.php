@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <h5 class="card-title">' . $topic_name . '</h5>
                         <p class="card-text">' . substr($topic_desc, 0, 50) . '...</p>
-                        <a href="#" class="btn btn-primary">Continue reading</a>
+                        <a href="stories.php?story_id='.$id.'" class="btn btn-primary">Continue reading</a>
                     </div>
                 </div>
             </div>';
