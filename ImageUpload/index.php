@@ -16,12 +16,12 @@ require_once("./operations.php");
 <body>
     <h1 class="text-center my-3"> Registration Form </h1>
     <div class="container d-flex justify-content-center">
-        <form action="" class="w-50">
+        <form action="display.php" method="post" class="w-50" enctype="multipart/form-data">
             <?php inputFields("Username", "username", "", "text"); ?>
             <?php inputFields("Mobile", "mobile", "", "text"); ?>
             <?php inputFields("", "file", "", "file"); ?>
             <div class="container d-flex justify-content-center">
-                <button type="button" class="btn btn-dark" name="submit">Submit</button>
+                <button type="submit" class="btn btn-dark" name="submit">Submit</button>
             </div>
         </form>
     </div>
