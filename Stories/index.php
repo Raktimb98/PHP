@@ -65,7 +65,7 @@
             }
             ?>
         </div>
-
+    </div>
         <?php include './partials/footer.php'; ?>
 
         <!-- Bootstrap js cdn -->
