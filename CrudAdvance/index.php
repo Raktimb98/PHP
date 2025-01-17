@@ -16,53 +16,37 @@
     <h1 class="text-center bg-dark text-light py-2">PHP Advance CRUD</h1>
     <div class="container">
         <!-- Form modal -->
-        <div class="modal fade" id="user-modal">
+        <div class="modal fade" id="user-modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add or update user</h1>
+                        <h1 class="modal-title fs-5" id="modalLabel">Add or update user</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form id="add-form" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
                             <!-- Username -->
                             <div class="form-group">
-                                <label>Name:</label>
+                                <label for="username">Name:</label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-dark text-light"><i class="fas fa-regular fa-user"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Enter your username" id="username">
+                                    <span class="input-group-text bg-dark text-light"><i class="far fa-user"></i></span>
+                                    <input type="text" class="form-control" placeholder="Enter your username" id="username" name="username">
                                 </div>
                             </div>
                             <!-- Email -->
                             <div class="form-group">
-                                <label>Email:</label>
+                                <label for="email">Email:</label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-dark text-light"><i class="fa-regular fa-envelope"></i></span>
-                                    </div>
-                                    <input type="email" class="form-control" placeholder="Enter your Email" id="email">
+                                    <span class="input-group-text bg-dark text-light"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" placeholder="Enter your Email" id="email" name="email">
                                 </div>
                             </div>
                             <!-- Mobile -->
                             <div class="form-group">
-                                <label>Mobile:</label>
+                                <label for="mobile">Mobile:</label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-dark text-light"><i class="fa-solid fa-mobile"></i></span>
-                                    </div>
-                                    <input type="number" class="form-control" placeholder="Enter your mobile" id="mobile">
-                                </div>
-                            </div>
-                            <!-- Password -->
-                            <div class="form-group">
-                                <label>Password:</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-dark text-light"><i class="fa-solid fa-lock"></i></span>
-                                    </div>
-                                    <input type="password" class="form-control" placeholder="Enter your password" id="password">
+                                    <span class="input-group-text bg-dark text-light"><i class="fas fa-mobile"></i></span>
+                                    <input type="text" class="form-control" placeholder="Enter your mobile" id="mobile" name="mobile" pattern="\d{10}" title="Please enter a 10-digit number">
                                 </div>
                             </div>
                             <!-- Image -->
@@ -72,7 +56,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-dark">Submit</button>
+                            <button type="submit" class="btn btn-dark">Submit</button>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         </div>
                     </form>
@@ -80,25 +64,54 @@
             </div>
         </div>
         <!-- Input search and button section -->
-        <div class="row">
+        <div class="row mt-4 mb-3">
             <div class="col-10">
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-dark text-light"><i class="fa-duotone fa-solid fa-magnifying-glass"></i></span>
-                    </div>
+                    <span class="input-group-text bg-dark text-light"><i class="fas fa-magnifying-glass"></i></span>
                     <input type="text" class="form-control" placeholder="Search user">
                 </div>
             </div>
             <div class="col-2">
                 <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#user-modal">Add User</button>
-
             </div>
         </div>
+        <!-- Table section -->
+        <table class="table" id="user-table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-        <!-- Jquery cdn -->
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <!-- Bootstrap JS cdn -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
