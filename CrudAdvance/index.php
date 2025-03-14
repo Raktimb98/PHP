@@ -1,3 +1,9 @@
+<?php
+require_once 'partials/connect.php';
+$dbobj = new Database();
+var_dump($dbobj);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,24 +94,36 @@
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
+                    <th scope="row">Picture-1</th>
+                    <td>FrostFern</td>
+                    <td>frostfern@xyz.com</td>
+                    <td>1234567890</td>
+                    <td>
+                        <span>Edit</span>
+                        <span>Profile</span>
+                        <span>Delete</span>
+                    </td>
                 </tr>
             </tbody>
         </table>
+        <!-- Pagination -->
+        <nav aria-label="Page navigation example" id="pagination">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
     <!-- Jquery cdn -->
