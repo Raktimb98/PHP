@@ -1,8 +1,8 @@
-<?php
-require_once 'partials/connect.php';
-$dbobj = new Database();
-var_dump($dbobj);
-?>
+<!-- <?php
+// require_once 'partials/database.php';
+// $dbobj = new Database();
+// var_dump($dbobj);
+?> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,53 +22,8 @@ var_dump($dbobj);
     <h1 class="text-center bg-dark text-light py-2">PHP Advance CRUD</h1>
     <div class="container">
         <!-- Form modal -->
-        <div class="modal fade" id="user-modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalLabel">Add or update user</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form id="add-form" method="POST" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            <!-- Username -->
-                            <div class="form-group">
-                                <label for="username">Name:</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-dark text-light"><i class="far fa-user"></i></span>
-                                    <input type="text" class="form-control" placeholder="Enter your username" id="username" name="username">
-                                </div>
-                            </div>
-                            <!-- Email -->
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-dark text-light"><i class="fas fa-envelope"></i></span>
-                                    <input type="email" class="form-control" placeholder="Enter your Email" id="email" name="email">
-                                </div>
-                            </div>
-                            <!-- Mobile -->
-                            <div class="form-group">
-                                <label for="mobile">Mobile:</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-dark text-light"><i class="fas fa-mobile"></i></span>
-                                    <input type="text" class="form-control" placeholder="Enter your mobile" id="mobile" name="mobile" pattern="\d{10}" title="Please enter a 10-digit number">
-                                </div>
-                            </div>
-                            <!-- Image -->
-                            <div class="form-group">
-                                <label for="image" class="form-label">Choose your Image:</label>
-                                <input type="file" class="form-control" name="image" id="image">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-dark">Submit</button>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <?php include './partials/form.php'; ?>
+        <?php include './partials/profile.php'; ?>
         <!-- Input search and button section -->
         <div class="row mt-4 mb-3">
             <div class="col-10">
@@ -82,30 +37,7 @@ var_dump($dbobj);
             </div>
         </div>
         <!-- Table section -->
-        <table class="table" id="user-table">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Operations</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Picture-1</th>
-                    <td>FrostFern</td>
-                    <td>frostfern@xyz.com</td>
-                    <td>1234567890</td>
-                    <td>
-                        <span>Edit</span>
-                        <span>Profile</span>
-                        <span>Delete</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <?php include './partials/tableData.php';?>
         <!-- Pagination -->
         <nav aria-label="Page navigation example" id="pagination">
             <ul class="pagination justify-content-center">
