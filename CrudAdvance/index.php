@@ -9,7 +9,7 @@ $items = $item->read();
 <?php include 'includes/header.php'; ?>
 
 <h1 class="text-center mb-4">CRUD System</h1>
-<a href="create.php" class="btn btn-primary mb-3">Add New Item</a>
+<a href="create.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>Add New Item</a>
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr>
@@ -28,8 +28,8 @@ $items = $item->read();
             <td><?= $row['description'] ?></td>
             <td><img src="upload/<?= $row['image'] ?>" width="100" class="img-thumbnail"></td>
             <td>
-                <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
+                <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i>Edit</a>
+                <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</a>
             </td>
         </tr>
         <?php endforeach; ?>
