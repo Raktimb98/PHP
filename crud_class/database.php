@@ -1,52 +1,87 @@
 <?php
-class Database{
+class Database {
     private $db_host = 'localhost';
     private $username = 'root';
     private $password = '';
     private $db_name = 'class_crud';
 
-    private $mysqli = '';
+    private $mysqli = null;
     private $result = array();
     private $conn = false;
 
-    public function __construct(){
-        if(!$this->conn){
-            $this->mysqli = new mysqli($this->db_host,$this->username,$this->password,$this->db_name);
-
-            if($this->mysqli->connect_error){
-                array_push($this->result,$this->mysqli->connect_error);
-                return false;
+    public function __construct() {
+        if (!$this->conn) {
+            $this->mysqli = new mysqli($this->db_host, $this->username, $this->password, $this->db_name);
+            if ($this->mysqli->connect_error) {
+                array_push($this->result, $this->mysqli->connect_error);
+                return;
             }
+            $this->conn = true;
         }
-        else{
+    }
+
+    public function insert($table, $params = array()) {
+        if ($this->tableExists($table)) {
+            $columns = implode(", ", array_keys($params));
+            $placeholders = implode(", ", array_fill(0, count($params), '?'));
+            $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+            $stmt = $this->mysqli->prepare($sql);
+
+            if ($stmt) {
+                $types = str_repeat("s", count($params)); // Assuming all values are strings
+                $stmt->bind_param($types, ...array_values($params));
+
+                if ($stmt->execute()) {
+                    array_push($this->result, "Data inserted successfully into $table table");
+                    return true;
+                } else {
+                    array_push($this->result, $stmt->error);
+                }
+
+                $stmt->close();
+            } else {
+                array_push($this->result, $this->mysqli->error);
+            }
+        } else {
+            array_push($this->result, "Table $table does not exist");
+        }
+
+        return false;
+    }
+
+    // Placeholder methods for future use
+    public function update() {
+        // To be implemented
+    }
+
+    public function delete($table, $where = null) {
+        // To be implemented
+    }
+
+    public function select() {
+        // To be implemented
+    }
+
+    private function tableExists($table) {
+        $sql = "SHOW TABLES FROM `$this->db_name` LIKE '$table'";
+        $tableInDb = $this->mysqli->query($sql);
+        if ($tableInDb && $tableInDb->num_rows == 1) {
             return true;
-        }
-    }
-    public function insert(){
-
-    }
-    public function update(){
-
-    }
-    public function delete($table,$where = null){
-
-    }
-    public function select(){
-
-    }
-    public function __destruct()
-    {
-        if($this->conn){
-            if($this->mysqli->close()){
-                return true;
-            }
-            else{
-                array_push($this->result,$this->mysqli->error);
-                return false;
-            }
-        }
-        else{
+        } else {
+            array_push($this->result, "Table $table does not exist in the database $this->db_name");
             return false;
+        }
+    }
+
+    public function getResult() {
+        return $this->result;
+    }
+
+    public function __destruct() {
+        if ($this->conn) {
+            if (!$this->mysqli->close()) {
+                array_push($this->result, $this->mysqli->error);
+            }
         }
     }
 }
