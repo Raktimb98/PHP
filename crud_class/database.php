@@ -50,8 +50,21 @@ class Database {
     }
 
     // Placeholder methods for future use
-    public function update() {
-        // To be implemented
+    public function update($table, $params = array(), $where = null){
+        if ($this->tableExists($table)){
+            $args = array();
+            foreach($params as $key => $value){
+                $args[] = "$key = '$value'";
+            }
+            // print_r($args);
+            $sql = "UPDATE $table SET ".implode(', ', $args);
+            if ($where != null){
+                $sql .= " WHERE $where";
+            }
+            echo $sql;
+        }else{
+            return false;
+        }
     }
 
     public function delete($table, $where = null) {
