@@ -49,20 +49,22 @@ class Database {
         return false;
     }
 
-    // Placeholder methods for future use
     public function update($table, $params = array(), $where = null){
         if ($this->tableExists($table)){
             $args = array();
             foreach($params as $key => $value){
                 $args[] = "$key = '$value'";
             }
-            // print_r($args);
+
             $sql = "UPDATE $table SET ".implode(', ', $args);
-            if ($where != null){
+
+            // ✅ Fix: check if $where is a string
+            if ($where != null && is_string($where)){
                 $sql .= " WHERE $where";
             }
+
             echo $sql;
-        }else{
+        } else {
             return false;
         }
     }
