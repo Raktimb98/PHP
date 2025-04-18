@@ -70,7 +70,28 @@ class Database {
     }
 
     public function delete($table, $where = null) {
-        // To be implemented
+        if($this->tableExists($table)){
+            $sql = "DELETE FROM $table";
+            if($where !=null && is_string($where)){
+                $sql .= " WHERE $where";
+            }
+            // echo $sql;
+            $stmt = $this->mysqli->prepare($sql);
+            if($stmt){
+                if($stmt->execute()){
+                    array_push($this->result, "Data deleted successfully from $table table");
+                    return true;
+                } else {
+                    array_push($this->result, $stmt->error);
+                }
+                $stmt->close();
+            } else {
+                array_push($this->result, $this->mysqli->error);
+            }
+        }
+        else{
+            return false;
+        }
     }
 
     public function select() {

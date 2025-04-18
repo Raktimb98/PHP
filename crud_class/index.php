@@ -8,7 +8,9 @@ $obj = new Database();
 // $obj->update('students',['student_name'=>'Joe Goldburg','age'=>'36','city'=>'India'],['student_id'=>1]);
 // print_r($obj->getResult());
 
-$obj->update('students', ['student_name' => 'Joe Goldburg', 'age' => '36', 'city' => 'India'], ['student_id' => 1]);
-print_r($obj->getResult());
+// $obj->update('students', ['student_name' => 'Joe Goldburg', 'age' => '36', 'city' => 'India'], ['student_id' => 1]);
+// print_r($obj->getResult());
 
+$obj->delete('students', ['student_id' => 7]);
+print_r($obj->getResult());
 ?>
